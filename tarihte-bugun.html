@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoVault - Tarihte Bugün</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="tarihte-bugun.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="ChronoVault Logo" class="logo">
+                <span class="site-name">ChronoVault</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="kesfet.html">Keşfet</a></li>
+                <li><a href="tarihte-bugun.html" class="active">Tarihte Bugün</a></li>
+                <li><a href="hakkinda.html">Hakkında</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="user-profile">
+                <span class="username">Misafir</span>
+                <div class="profile-pic">
+                    <img src="images/profile-default.jpg" alt="Profil Fotoğrafı">
+                </div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Today's Date Display -->
+    <section class="today-date-section">
+        <div class="date-display">
+            <div class="date-icon">
+                <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="current-date" id="currentDate">
+                16 Mart 2025
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="calendar-section">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth" class="month-nav"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="monthYear">Mart 2025</h2>
+                <button id="nextMonth" class="month-nav"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="weekdays">
+                <div>Pzt</div>
+                <div>Sal</div>
+                <div>Çar</div>
+                <div>Per</div>
+                <div>Cum</div>
+                <div>Cmt</div>
+                <div>Paz</div>
+            </div>
+            <div class="calendar-days" id="calendarDays">
+                <!-- Days will be filled by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Today in History Content -->
+    <section class="history-content">
+        <h2>Tarihte Bugün: <span id="selectedDate">16 Mart</span></h2>
+        <div class="history-cards">
+            <!-- History Card 1 -->
+            <div class="history-card">
+                <div class="history-card-date">
+                    <span class="day">16</span>
+                    <span class="month">Mart</span>
+                    <span class="year">1921</span>
+                </div>
+                <div class="history-card-content">
+                    <h3>Moskova Antlaşması İmzalandı</h3>
+                    <p>Türkiye Büyük Millet Meclisi ile Sovyet Rusya arasında imzalanan Moskova Antlaşması ile Türkiye'nin kuzeydoğu sınırı belirlendi ve iki ülke arasında dostluk ilişkileri kuruldu.</p>
+                    <a href="#" class="read-more" data-story-id="moskova-antlasmasi">Devamını Oku</a>
+                </div>
+            </div>
+            
+            <!-- History Card 2 -->
+            <div class="history-card">
+                <div class="history-card-date">
+                    <span class="day">16</span>
+                    <span class="month">Mart</span>
+                    <span class="year">1978</span>
+                </div>
+                <div class="history-card-content">
+                    <h3>Amoco Cadiz Petrol Felaketi</h3>
+                    <p>Fransa'nın Brittany kıyılarında Amoco Cadiz petrol tankeri karaya oturarak tarihte yaşanan en büyük petrol felaketlerinden birine neden oldu, 1.6 milyon varil ham petrol denize karıştı.</p>
+                    <a href="#" class="read-more" data-story-id="amoco-cadiz-felaketi">Devamını Oku</a>
+                </div>
+            </div>
+            
+            <!-- History Card 3 -->
+            <div class="history-card">
+                <div class="history-card-date">
+                    <span class="day">16</span>
+                    <span class="month">Mart</span>
+                    <span class="year">1926</span>
+                </div>
+                <div class="history-card-content">
+                    <h3>Robert Goddard'ın İlk Roket Fırlatışı</h3>
+                    <p>Amerikalı bilim insanı Robert Goddard, tarihteki ilk sıvı yakıtlı roketi başarıyla fırlattı. Bu olay, modern roket biliminin ve uzay çağının başlangıcı olarak kabul edilir.</p>
+                    <a href="#" class="read-more" data-story-id="goddard-roket-firlatisi">Devamını Oku</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Events -->
+    <section class="search-history">
+        <div class="search-container">
+            <h3>Tarihte Ara</h3>
+            <div class="search-inputs">
+                <select id="daySelect" class="date-select">
+                    <option value="">Gün</option>
+                    <!-- Days will be added by JS -->
+                </select>
+                <select id="monthSelect" class="date-select">
+                    <option value="">Ay</option>
+                    <option value="1">Ocak</option>
+                    <option value="2">Şubat</option>
+                    <option value="3">Mart</option>
+                    <option value="4">Nisan</option>
+                    <option value="5">Mayıs</option>
+                    <option value="6">Haziran</option>
+                    <option value="7">Temmuz</option>
+                    <option value="8">Ağustos</option>
+                    <option value="9">Eylül</option>
+                    <option value="10">Ekim</option>
+                    <option value="11">Kasım</option>
+                    <option value="12">Aralık</option>
+                </select>
+                <select id="yearSelect" class="date-select">
+                    <option value="">Yıl</option>
+                    <!-- Years will be added by JS -->
+                </select>
+                <button id="searchDate" class="search-btn">
+                    <i class="fas fa-search"></i> Ara
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 ChronoVault | Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="tarihte-bugun.js"></script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+/* Hikaye Detay Sayfası Stilleri */
+
+/* Hikaye Başlık Bölümü */
+.story-header {
+    height: 60vh;
+    position: relative;
+    background: url('images/titanic-header.jpg') no-repeat center center/cover;
+    margin-top: 80px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.story-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.story-header-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 5%;
+    width: 100%;
+}
+
+.story-header-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.story-meta {
+    display: flex;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+.story-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.story-meta i {
+    margin-right: 6px;
+    color: #ff6b6b;
+}
+
+/* Hikaye İçerik Bölümü */
+.story-content {
+    padding: 60px 5%;
+    background-color: #121212;
+}
+
+.story-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-main {
+    flex: 1;
+    background: rgba(26, 26, 26, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.featured-image {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-caption {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.story-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.story-intro {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #e6e6e6;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    border-left: 3px solid #ff6b6b;
+}
+
+.story-text h2 {
+    font-size: 1.8rem;
+    margin: 35px 0 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.story-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.story-text p {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.story-quote {
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255, 107, 107, 0.1);
+    border-left: 4px solid #ff6b6b;
+    border-radius: 0 10px 10px 0;
+}
+
+.story-quote blockquote {
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: 10px;
+    color: #e6e6e6;
+}
+
+.story-quote cite {
+    display: block;
+    text-align: right;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.image-gallery {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-caption {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.story-facts {
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.story-facts h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: #ff9f43;
+}
+
+.story-facts ul {
+    padding-left: 20px;
+}
+
+.story-facts li {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.story-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.tag {
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+/* Sidebar Stilleri */
+.story-sidebar {
+    width: 300px;
+    align-self: flex-start;
+}
+
+.sidebar-widget {
+    background: rgba(26, 26, 26, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-widget h3 {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.3rem;
+    color: #ff6b6b;
+}
+
+.related-story {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.related-story:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.related-story img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.related-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.related-info p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.categories-widget ul {
+    list-style: none;
+}
+
+.categories-widget li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.categories-widget li:last-child {
+    border-bottom: none;
+}
+
+.categories-widget li:hover {
+    color: #ff6b6b;
+    padding-left: 5px;
+}
+
+.categories-widget i {
+    margin-right: 10px;
+    color: #ff6b6b;
+}
+
+/* Yorumlar Bölümü */
+.comments-section {
+    padding: 60px 5%;
+    background-color: #1a1a1a;
+}
+
+.comments-section .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comments-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.comments-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.comment-count {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.comment-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.comment-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-input-container {
+    flex: 1;
+    position: relative;
+}
+
+.comment-input-container textarea {
+    width: 100%;
+    height: 80px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.comment-input-container textarea:focus {
+    outline: none;
+    border-color: rgba(255, 107, 107, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-comment {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 20px;
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-comment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comment {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-header h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.comment p {
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.comment-actions span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.comment-actions span:hover {
+    color: #ff6b6b;
+}
+
+.comment-actions i {
+    margin-right: 5px;
+}
+
+/* Duyarlı Tasarım */
+@media (max-width: 992px) {
+    .story-container {
+        flex-direction: column;
+    }
+    
+    .story-sidebar {
+        width: 100%;
+    }
+    
+    .image-gallery {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-header {
+        height: 50vh;
+    }
+    
+    .story-header-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .story-meta {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .story-main {
+        padding: 20px;
+    }
+    
+    .story-intro {
+        font-size: 1.1rem;
+    }
+    
+    .story-text h2 {
+        font-size: 1.6rem;
+    }
+    
+    .story-quote blockquote {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .story-header {
+        height: 40vh;
+    }
+    
+    .story-header-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .story-content {
+        padding: 40px 4%;
+    }
+    
+    .story-main {
+        padding: 15px;
+    }
+    
+    .comment {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .comment-avatar {
+        margin-bottom: 10px;
+    }
+    
+    .comment-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

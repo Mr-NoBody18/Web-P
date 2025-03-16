@@ -1,0 +1,415 @@
+/* Tarihte Bugün - Özel Stiller */
+/* Genel alan stilleri */
+.today-date-section {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('images/time-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    margin-top: 80px;
+}
+
+.today-date-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.date-display {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.date-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #ff6b6b;
+}
+
+.current-date {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Takvim bölümü stilleri */
+.calendar-section {
+    padding: 60px 20px;
+    background-color: #1a1a1a;
+}
+
+.calendar-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #212121;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 159, 67, 0.1));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.month-nav {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.month-nav:hover {
+    background: rgba(255, 107, 107, 0.2);
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 500;
+    color: #ff9f43;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    padding: 15px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+.calendar-day.today {
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+.calendar-day.selected {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.calendar-day.inactive {
+    color: #555;
+    cursor: default;
+}
+
+.calendar-day.has-events {
+    position: relative;
+}
+
+.calendar-day.has-events::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+}
+
+/* Tarihte bugün içerik bölümü */
+.history-content {
+    padding: 60px 20px;
+}
+
+.history-content h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.history-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+}
+
+.history-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.history-card {
+    display: flex;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.history-card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    color: white;
+    padding: 20px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.history-card-date .day {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.history-card-date .month {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.history-card-date .year {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.history-card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.history-card-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.history-card-content p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.read-more::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+    transition: width 0.3s ease;
+}
+
+.read-more:hover {
+    color: #ff9f43;
+}
+
+.read-more:hover::after {
+    width: 100%;
+}
+
+/* Tarih Arama Bölümü */
+.search-history {
+    padding: 30px 20px 60px;
+    background-color: #1a1a1a;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #212121;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-container h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.search-inputs {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.date-select {
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background-color: #323232;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    flex-grow: 1;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.search-btn {
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .today-date-section {
+        height: 40vh;
+    }
+    
+    .date-display {
+        padding: 20px 30px;
+    }
+    
+    .date-icon {
+        font-size: 2.2rem;
+    }
+    
+    .current-date {
+        font-size: 1.8rem;
+    }
+    
+    .history-card {
+        flex-direction: column;
+    }
+    
+    .history-card-date {
+        flex-direction: row;
+        padding: 15px;
+        min-width: auto;
+        gap: 10px;
+    }
+    
+    .search-inputs {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-container {
+        margin: 0 -10px;
+        border-radius: 0;
+    }
+    
+    .weekdays div, .calendar-day {
+        font-size: 0.9rem;
+    }
+    
+    .date-display {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .current-date {
+        font-size: 1.5rem;
+    }
+}
