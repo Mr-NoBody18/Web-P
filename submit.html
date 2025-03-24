@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HikayePortalı - Hikaye Gönder</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="header-loader.js"></script>
+    <script src="mobile-nav.js"></script>
+    <style>
+        /* Hikaye Paylaşma Sayfası için Ek Stiller */
+        .form-container {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(50, 50, 50, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23b3b3b3' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 15px) center;
+            padding-right: 40px;
+        }
+
+        .form-option {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-purple);
+        }
+
+        .form-checkbox-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-info {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .form-button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-purple));
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-button:active {
+            transform: translateY(-1px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 767px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .guidelines {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .guidelines-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--accent-orange);
+        }
+
+        .guidelines-list {
+            list-style-type: none;
+        }
+
+        .guidelines-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .guidelines-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder - Modüler navigasyon barı buraya yüklenecek -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Sayfa İçeriği -->
+     
+    <!-- Ana Sayfa İçeriği -->
+    <main class="container">
+        <section class="hero-section">
+            <h1 class="section-title">Hikayeni Paylaş</h1>
+            
+            <div class="guidelines">
+                <h3 class="guidelines-title">Hikaye Paylaşım Kuralları</h3>
+                <ul class="guidelines-list">
+                    <li>Hikayeniz gerçek veya kurgu olabilir, ancak hangi kategoride olduğunu belirtmelisiniz.</li>
+                    <li>Başkalarına ait hikayeleri kendi hikayeniz gibi paylaşmayın.</li>
+                    <li>Hikayenizde uygunsuz içerik, nefret söylemi veya şiddet içeren aşırı detaylar bulunmamalıdır.</li>
+                    <li>Mümkünse hikayenizi destekleyecek görseller ekleyin, ancak telif haklarına dikkat edin.</li>
+                    <li>Hikayeniz onaylandıktan sonra ana sayfada yayınlanacaktır.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="form-container">
+                <h2 class="form-title">Hikaye Bilgileri</h2>
+                
+                <form id="story-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="title" class="form-label">Hikaye Başlığı</label>
+                            <input type="text" id="title" name="title" class="form-input" placeholder="Etkileyici bir başlık girin" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category" class="form-label">Kategori</label>
+                            <select id="category" name="category" class="form-select" required>
+                                <option value="" disabled selected>Kategori seçin</option>
+                                <option value="discover" class="form-option">Keşfet</option>
+                                <option value="today" class="form-option">Tarihte Bugün</option>
+                                <option value="about" class="form-option">Hakkımızda</option>
+                                <option value="contact" class="form-option">İletişim</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description" class="form-label">Kısa Açıklama</label>
+                        <input type="text" id="description" name="description" class="form-input" placeholder="Hikayenizi kısaca tanımlayın (max 150 karakter)" maxlength="150" required>
+                        <p class="form-info">Bu açıklama hikaye kartında görünecektir</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content" class="form-label">Hikaye İçeriği</label>
+                        <textarea id="content" name="content" class="form-textarea" placeholder="Hikayenizi buraya yazın..." required></textarea>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="image" class="form-label">Kapak Görseli</label>
+                            <input type="file" id="image" name="image" class="form-input" accept="image/*">
+                            <p class="form-info">Önerilen boyut: 400x320 piksel</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="story-type" class="form-label">Hikaye Türü</label>
+                            <select id="story-type" name="story-type" class="form-select" required>
+                                <option value="" disabled selected>Tür seçin</option>
+                                <option value="real" class="form-option">Gerçek Hikaye</option>
+                                <option value="fiction" class="form-option">Kurgu</option>
+                                <option value="historical" class="form-option">Tarihi Olay</option>
+                                <option value="personal" class="form-option">Kişisel Deneyim</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Teknik Bilgiler / Detaylar (İsteğe Bağlı)</label>
+                        <div id="details-container">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <input type="text" name="detail-label[]" class="form-input" placeholder="Etiket (örn: Tarih, Konum)">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="detail-value[]" class="form-input" placeholder="Değer (örn: 1986, İstanbul)">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="add-detail" class="form-button" style="background: rgba(50, 50, 50, 0.7); margin-right: 10px;">+ Detay Ekle</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" class="form-checkbox" required>
+                            <label for="terms" class="form-checkbox-label">Hikaye paylaşım kurallarını okudum ve kabul ediyorum</label>
+                        </div>
+                        
+                        <div class="form-checkbox-group">
+                            <input type="checkbox" id="original" name="original" class="form-checkbox" required>
+                            <label for="original" class="form-checkbox-label">Bu hikayenin bana ait olduğunu veya paylaşım iznine sahip olduğumu onaylıyorum</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="form-button">Hikayeyi Gönder</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">HP</div>
+                        <span class="logo-text">HikayePortalı</span>
+                    </a>
+                    <p>Hikayelerin buluşma noktası</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Sayfalar</h3>
+                        <ul>
+                            <li><a href="index.html">Anasayfa</a></li>
+                            <li><a href="discover.html">Keşfet</a></li>
+                            <li><a href="today.html">Tarihte Bugün</a></li>
+                            <li><a href="about.html">Hakkında</a></li>
+                            <li><a href="contact.html">İletişim</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Kategoriler</h3>
+                        <ul>
+                            <li><a href="#">Macera</a></li>
+                            <li><a href="#">Romantik</a></li>
+                            <li><a href="#">Bilim Kurgu</a></li>
+                            <li><a href="#">Fantastik</a></li>
+                            <li><a href="#">Korku</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Yasal</h3>
+                        <ul>
+                            <li><a href="#">Kullanım Şartları</a></li>
+                            <li><a href="#">Gizlilik Politikası</a></li>
+                            <li><a href="#">Çerez Politikası</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 HikayePortalı. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="submit.js"></script>
+</body>
+</html>

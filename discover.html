@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HikayePortalı - Ana Sayfa</title>
+    <title>HikayePortalı - Keşfet</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="header-loader.js"></script>
     <script src="mobile-nav.js"></script>
@@ -12,25 +12,59 @@
     <!-- Header Placeholder - Modüler navigasyon barı buraya yüklenecek -->
     <div id="header-placeholder"></div>
 
-    <!-- Ana Sayfa İçeriği -->
+    <!-- Keşfet Sayfası İçeriği -->
     <main class="container">
         <!-- Hero Bölümü -->
         <section class="hero-section">
-            <h1 class="section-title">Keşfedilecek Hikayeler</h1>
+            <h1 class="section-title">Hikayeleri Keşfet</h1>
             
-            <div class="today-in-history">
-                <p class="today-date">14 Mart 2025 - Bugün Tarihte</p>
-                <h2 class="history-event">1986 - <strong>Avrupa Para Birimi (ECU)</strong> Avrupa Topluluğu'nun resmi para birimi olarak onaylandı.</h2>
+            <div class="discover-intro">
+                <p>Farklı kategorilerdeki hikayeleri keşfedin, ilginizi çeken konularda yeni bilgiler edinin.</p>
+            </div>
+            
+            <!-- Arama Motoru -->
+            <div class="search-container">
+                <div class="search-bar active">
+                    <input type="text" placeholder="Hikaye ara..." id="search-input">
+                </div>
+                <button class="search-button" id="search-button">
+                    <span class="search-icon">🔍</span>
+                </button>
             </div>
         </section>
 
-        <!-- Öne Çıkan İçerikler -->
+        <!-- Filtreleme Bölümü -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <h3 class="filter-title">Kategoriler</h3>
+                <div class="filter-options">
+                    <button class="filter-button active" data-category="all">Tümü</button>
+                    <button class="filter-button" data-category="disasters">Felaketler</button>
+                    <button class="filter-button" data-category="cars">Arabalar</button>
+                    <button class="filter-button" data-category="historic">Tarihi Mekanlar</button>
+                    <button class="filter-button" data-category="creepy">Creepy Hikayeler</button>
+                    <button class="filter-button" data-category="science">Bilim</button>
+                    <button class="filter-button" data-category="tech">Teknoloji</button>
+                </div>
+            </div>
+            
+            <div class="sort-container">
+                <h3 class="filter-title">Sıralama</h3>
+                <div class="filter-options">
+                    <button class="sort-button active" data-sort="popular">Popüler</button>
+                    <button class="sort-button" data-sort="newest">En Yeni</button>
+                    <button class="sort-button" data-sort="oldest">En Eski</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tüm Hikayeler -->
         <section>
-            <h2 class="section-title">Öne Çıkanlar</h2>
+            <h2 class="section-title">Keşfet</h2>
             
             <div class="card-grid">
                 <!-- Çernobil Örneği -->
-                <div class="content-card">
+                <div class="content-card" data-category="disasters">
                     <img src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Çernobil Nükleer Felaketi" class="card-image">
                     <div class="card-content">
                         <div class="card-category category-disasters">Felaketler</div>
@@ -70,7 +104,7 @@
                 </div>
                 
                 <!-- Ferrari F40 Örneği -->
-                <div class="content-card">
+                <div class="content-card" data-category="cars">
                     <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ferrari F40" class="card-image">
                     <div class="card-content">
                         <div class="card-category category-cars">Arabalar</div>
@@ -110,7 +144,7 @@
                 </div>
                 
                 <!-- Creepy Hikaye Örneği -->
-                <div class="content-card">
+                <div class="content-card" data-category="creepy">
                     <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Rüya Avcısı" class="card-image">
                     <div class="card-content">
                         <div class="card-category category-creepy">Creepy Hikayeler</div>
@@ -148,79 +182,33 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Son Eklenenler Bölümü -->
-        <section>
-            <h2 class="section-title">Son Eklenenler</h2>
-            
-            <div class="card-grid">
-                <!-- Tarihi Mekan Örneği -->
-                <div class="content-card">
-                    <img src="https://images.unsplash.com/photo-1545424436-1be2b5c0d0fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Ayasofya" class="card-image">
+                
+                <!-- Göbeklitepe Örneği -->
+                <div class="content-card" data-category="historic">
+                    <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Göbeklitepe" class="card-image">
                     <div class="card-content">
                         <div class="card-category category-historic">Tarihi Mekanlar</div>
-                        <h3 class="card-title">Ayasofya: Bin Yıllık İhtişamın Hikayesi</h3>
-                        <p class="card-description">İstanbul'un kalbinde yer alan, farklı medeniyetlere ve inançlara ev sahipliği yapmış olan Ayasofya'nın etkileyici tarihi ve mimari özellikleri.</p>
+                        <h3 class="card-title">Göbeklitepe: İnsanlık Tarihini Yeniden Yazan Keşif</h3>
+                        <p class="card-description">Şanlıurfa'da bulunan ve 12.000 yıllık geçmişiyle bilinen en eski tapınak kompleksi olan Göbeklitepe'nin keşif hikayesi ve arkeolojik önemi.</p>
+                        
                         <div class="info-box">
-                            <h4 class="info-title">Yapı Bilgileri</h4>
+                            <h4 class="info-title">Arkeolojik Bilgiler</h4>
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <span class="info-label">İnşa Tarihi: </span>
-                                    <span class="info-value">537</span>
+                                    <span class="info-label">Keşif Tarihi: </span>
+                                    <span class="info-value">1994</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Mimar: </span>
-                                    <span class="info-value">Anthemius ve Isidorus</span>
+                                    <span class="info-label">Yaş: </span>
+                                    <span class="info-value">~12.000 yıl</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">Konum: </span>
-                                    <span class="info-value">İstanbul, Türkiye</span>
+                                    <span class="info-value">Şanlıurfa, Türkiye</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Kubbe Yüksekliği: </span>
-                                    <span class="info-value">55.6 metre</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-meta">
-                            <div class="card-date">12 Mart 2025</div>
-                            <div class="card-stats">
-                                <span>👁️ 5.2K</span>
-                                <span>💬 87</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Bilim Örneği -->
-                <div class="content-card">
-                    <img src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="James Webb Teleskobu" class="card-image">
-                    <div class="card-content">
-                        <div class="card-category category-science">Bilim</div>
-                        <h3 class="card-title">James Webb Teleskobu: Evrenin Derinliklerine Yolculuk</h3>
-                        <p class="card-description">NASA'nın Hubble'ın halefi olarak geliştirdiği James Webb Uzay Teleskobu'nun teknolojik özellikleri ve uzayın gizemlerini çözmek için yapacağı katkılar.</p>
-                        
-                        <div class="info-box">
-                            <h4 class="info-title">Teknik Özellikler</h4>
-                            <div class="info-grid">
-                                <div class="info-item">
-                                    <span class="info-label">Fırlatılış: </span>
-                                    <span class="info-value">25 Aralık 2021</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Ayna Çapı: </span>
-                                    <span class="info-value">6.5 metre</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Maliyet: </span>
-                                    <span class="info-value">10 milyar dolar</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Konum: </span>
-                                    <span class="info-value">L2 Lagrange Noktası</span>
+                                    <span class="info-label">UNESCO Listesi: </span>
+                                    <span class="info-value">2018</span>
                                 </div>
                             </div>
                         </div>
@@ -228,48 +216,87 @@
                         <div class="card-meta">
                             <div class="card-date">10 Mart 2025</div>
                             <div class="card-stats">
-                                <span>👁️ 7.8K</span>
+                                <span>👁️ 7.4K</span>
                                 <span>💬 156</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Teknoloji Örneği -->
-                <div class="content-card">
-                    <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Yapay Zeka" class="card-image">
+                <!-- Kuantum Bilgisayarlar Örneği -->
+                <div class="content-card" data-category="science">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Kuantum Bilgisayarlar" class="card-image">
                     <div class="card-content">
-                        <div class="card-category category-tech">Teknoloji</div>
-                        <h3 class="card-title">Yapay Zeka Çağı: İnsanlığın Geleceğini Şekillendiren Teknoloji</h3>
-                        <p class="card-description">Yapay zekanın tarihsel gelişimi, günümüzdeki uygulamaları ve gelecekte hayatımızı nasıl değiştireceğine dair kapsamlı bir inceleme.</p>
+                        <div class="card-category category-science">Bilim</div>
+                        <h3 class="card-title">Kuantum Bilgisayarlar: Geleceğin Hesaplama Teknolojisi</h3>
+                        <p class="card-description">Klasik bilgisayarlardan yüzlerce kat daha hızlı işlem yapabilen kuantum bilgisayarların çalışma prensipleri ve gelecekteki potansiyel uygulamaları.</p>
                         
                         <div class="info-box">
-                            <h4 class="info-title">Önemli Dönüm Noktaları</h4>
+                            <h4 class="info-title">Teknik Detaylar</h4>
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <span class="info-label">İlk YZ Terimi: </span>
-                                    <span class="info-value">1956</span>
+                                    <span class="info-label">Kubit Sayısı: </span>
+                                    <span class="info-value">127 (2023)</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Deep Blue: </span>
-                                    <span class="info-value">1997</span>
+                                    <span class="info-label">Çalışma Sıcaklığı: </span>
+                                    <span class="info-value">-273.14°C</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">GPT Modeli: </span>
-                                    <span class="info-value">2018</span>
+                                    <span class="info-label">Hız Avantajı: </span>
+                                    <span class="info-value">~100 milyon kat</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">Pazar Değeri: </span>
-                                    <span class="info-value">1.5 trilyon dolar</span>
+                                    <span class="info-label">Kullanım Alanları: </span>
+                                    <span class="info-value">Kriptografi, İlaç Keşfi</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="card-meta">
-                            <div class="card-date">9 Mart 2025</div>
+                            <div class="card-date">5 Mart 2025</div>
                             <div class="card-stats">
-                                <span>👁️ 9.4K</span>
+                                <span>👁️ 9.1K</span>
                                 <span>💬 203</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Yapay Zeka Örneği -->
+                <div class="content-card" data-category="tech">
+                    <img src="https://images.unsplash.com/photo-1488229297570-58520851e868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Yapay Zeka" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-tech">Teknoloji</div>
+                        <h3 class="card-title">Yapay Zeka: İnsan Zekasını Taklit Eden Teknoloji</h3>
+                        <p class="card-description">Yapay zekanın tarihsel gelişimi, günümüzdeki uygulamaları ve gelecekte insanlığı nasıl etkileyebileceğine dair kapsamlı bir inceleme.</p>
+                        <div class="info-box">
+                            <h4 class="info-title">Yapay Zeka Türleri</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Dar YZ: </span>
+                                    <span class="info-value">Tek görev odaklı</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Genel YZ: </span>
+                                    <span class="info-value">İnsan seviyesi</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Süper YZ: </span>
+                                    <span class="info-value">İnsan üstü</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">İlk YZ Çalışması: </span>
+                                    <span class="info-value">1956</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">11 Mart 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 14.2K</span>
+                                <span>💬 367</span>
                             </div>
                         </div>
                     </div>
@@ -327,5 +354,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="discover.js"></script>
 </body>
 </html>

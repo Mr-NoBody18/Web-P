@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HikayePortalı - Hikaye Detayı</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="header-loader.js"></script>
+    <script src="mobile-nav.js"></script>
+    <!-- Mobil menü için overlay -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+    <style>
+        /* Hikaye Detay Sayfası için Ek Stiller */
+        .story-container {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .story-header {
+            margin-bottom: 30px;
+        }
+
+        .story-category {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .story-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .story-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-brown), var(--accent-purple));
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .story-date {
+            color: var(--text-secondary);
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .story-featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .story-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+        }
+
+        .story-content h3 {
+            font-size: 22px;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .story-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .story-info-box {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .story-info-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .story-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .story-info-item {
+            font-size: 14px;
+        }
+
+        .story-info-label {
+            color: var(--text-secondary);
+            margin-right: 5px;
+        }
+
+        .story-info-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .story-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-button {
+            padding: 10px 15px;
+            background: rgba(50, 50, 50, 0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .action-button:hover {
+            background: rgba(60, 60, 60, 0.8);
+            color: var(--text-primary);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(50, 50, 50, 0.7);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-button:hover {
+            transform: translateY(-3px);
+            color: var(--text-primary);
+        }
+
+        .comments-section {
+            margin-top: 50px;
+        }
+
+        .comments-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .comments-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, currentColor, transparent);
+        }
+
+        .comment-form {
+            margin-bottom: 30px;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(50, 50, 50, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            min-height: 100px;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .comment-button {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-purple));
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .comment-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .comment-item {
+            backdrop-filter: blur(10px);
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comment-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-orange), var(--accent-purple));
+        }
+
+        .comment-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .comment-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .comment-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .related-stories {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 767px) {
+            .story-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .story-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-actions {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder - Modüler navigasyon barı buraya yüklenecek -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hikaye İçeriği -->
+    <main class="container">
+        <div class="story-container">
+            <div class="story-header">
+                <div class="story-category category-disasters">Felaketler</div>
+                <h1 class="story-title">Çernobil Nükleer Felaketi: İnsanlık Tarihinin En Büyük Nükleer Kazası</h1>
+                
+                <div class="story-meta">
+                    <div class="story-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <span class="author-name">Ahmet Yılmaz</span>
+                            <span class="story-date">15 Şubat 2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="story-stats">
+                        <span>👁️ 12.3K Görüntülenme</span>
+                        <span>💬 245 Yorum</span>
+                        <span>⭐ 4.8/5 Puan</span>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Çernobil Nükleer Felaketi" class="story-featured-image">
+            
+            <div class="story-info-box">
+                <h3 class="story-info-title">Teknik Bilgiler</h3>
+                <div class="story-info-grid">
+                    <div class="story-info-item">
+                        <span class="story-info-label">Tarih:</span>
+                        <span class="story-info-value">26 Nisan 1986</span>
+                    </div>
+                    <div class="story-info-item">
+                        <span class="story-info-label">Konum:</span>
+                        <span class="story-info-value">Pripyat, Ukrayna</span>
+                    </div>
+                    <div class="story-info-item">
+                        <span class="story-info-label">Reaktör Tipi:</span>
+                        <span class="story-info-value">RBMK-1000</span>
+                    </div>
+                    <div class="story-info-item">
+                        <span class="story-info-label">Radyasyon Salınımı:</span>
+                        <span class="story-info-value">5.2 milyon TBq</span>
+                    </div>
+                    <div class="story-info-item">
+                        <span class="story-info-label">Etkilenen Alan:</span>
+                        <span class="story-info-value">150.000 km²</span>
+                    </div>
+                    <div class="story-info-item">
+                        <span class="story-info-label">Tahliye Edilen Kişi:</span>
+                        <span class="story-info-value">350.000+</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-content">
+                <p>26 Nisan 1986'da, Ukrayna'nın Pripyat şehrinde bulunan Çernobil Nükleer Santrali'nin 4 numaralı reaktöründe meydana gelen patlama, insanlık tarihinin en büyük nükleer felaketlerinden biri olarak kayıtlara geçti. Sovyetler Birliği döneminde yaşanan bu kaza, hem bölge halkı hem de tüm dünya için uzun vadeli sonuçlar doğurdu.</p>
+                
+                <p>Kazanın gerçekleştiği gece, reaktörde yapılan bir güvenlik testi sırasında, operatörlerin bir dizi hatalı kararı ve reaktörün tasarım kusurları bir araya geldi. Saat 01:23'te meydana gelen ilk patlama, reaktörün çatısını uçurdu ve atmosfere büyük miktarda radyoaktif madde salınmasına neden oldu. İkinci patlama ise yangının başlamasına ve durumun daha da kötüleşmesine yol açtı.</p>
+                
+                <h3>Tahliye ve İlk Müdahale</h3>
+                
+                <p>Kazadan sonra, Sovyet yetkililer durumun ciddiyetini kavramakta geciktiler. Pripyat şehrinin 50.000'e yakın sakini ancak kazadan 36 saat sonra tahliye edilmeye başlandı. Sonraki günlerde, 30 km çapındaki bir bölge "Yasak Bölge" ilan edildi ve toplamda 350.000'den fazla kişi evlerini terk etmek zorunda kaldı.</p>
+                
+                <p>İlk müdahale ekipleri, yeterli koruyucu ekipman olmadan çalışmak zorunda kaldılar. "Liquidators" olarak bilinen bu kahramanlar, reaktörün üzerine helikopterlerle kum, kurşun ve bor dökerek radyasyonu kontrol altına almaya çalıştılar. Binlerce itfaiyeci, asker ve madenci, radyasyona maruz kalma pahasına felaketin daha da büyümesini engellemek için çalıştı.</p>
+                
+                <img src="https://via.placeholder.com/800x400" alt="Çernobil Tahliyesi" class="story-content-image">
+                
+                <h3>Uzun Vadeli Etkileri</h3>
+                
+                <p>Çernobil kazasının sağlık etkileri hala tartışma konusudur. Resmi raporlara göre doğrudan kazadan kaynaklanan ölüm sayısı 31 olarak belirtilse de, uzun vadede radyasyona maruz kalmanın neden olduğu kanser ve diğer hastalıklardan dolayı binlerce kişinin hayatını kaybettiği tahmin edilmektedir.</p>
+                
+                <p>Kazanın çevresel etkileri de çok büyük oldu. Radyoaktif serpinti, Ukrayna, Belarus ve Rusya'nın geniş alanlarını etkiledi ve Avrupa'nın büyük bir kısmına yayıldı. Bugün bile, bazı bölgelerde tarım yapılması ve yaşanması tehlikeli olmaya devam ediyor.</p>
+                
+                <p>Pripyat şehri, zamanın dondurulduğu bir hayalet şehre dönüştü. Terk edilmiş apartmanlar, okullar ve parklar, Sovyet döneminin sessiz tanıkları olarak duruyor. Son yıllarda, bölge "kara turizm" için popüler bir destinasyon haline geldi ve her yıl binlerce turist, bu trajik olayın izlerini görmek için bölgeyi ziyaret ediyor.</p>
+                
+                <h3>Çernobil'in Mirası</h3>
+                
+                <p>Çernobil kazası, nükleer enerji güvenliği konusunda dünya çapında bir dönüm noktası oldu. Kaza sonrasında, nükleer santrallerin güvenlik standartları yeniden gözden geçirildi ve sıkılaştırıldı. Ayrıca, birçok ülkede nükleer enerji karşıtı hareketlerin güçlenmesine neden oldu.</p>
+                
+                <p>2016 yılında, hasarlı reaktörün üzerine "New Safe Confinement" adı verilen devasa bir çelik yapı yerleştirildi. 1.5 milyar Euro'ya mal olan bu yapı, radyasyonun daha fazla sızmasını engellemek ve eski sarkofajın çökmesi durumunda oluşabilecek yeni bir felaketi önlemek için tasarlandı.</p>
+                
+                <p>Çernobil, insanlığa teknolojinin gücünü ve sorumluluğunu hatırlatan acı bir ders olarak tarihe geçti. Bu felaket, bilimsel ilerlemenin her zaman güvenlikle dengelenmesi gerektiğini ve insan hatasının ne kadar büyük sonuçlar doğurabileceğini gösterdi.</p>
+            </div>
+            
+            <div class="story-actions">
+                <div class="action-buttons">
+                    <button class="action-button" data-action="like">🤍 Beğen</button>
+                    <button class="action-button" data-action="save">📄 Kaydet</button>
+                </div>
+                
+                <div class="share-buttons">
+                    <button class="share-button" data-platform="twitter">𝕏</button>
+                    <button class="share-button" data-platform="facebook">f</button>
+                    <button class="share-button" data-platform="whatsapp">w</button>
+                    <button class="share-button" data-platform="copy">📋</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Benzer Hikayeler -->
+        <section class="related-stories">
+            <h2 class="section-title">Benzer Hikayeler</h2>
+            
+            <div class="card-grid">
+                <!-- Fukuşima Örneği -->
+                <div class="content-card">
+                    <img src="https://via.placeholder.com/400x320" alt="Fukuşima Nükleer Felaketi" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-disasters">Felaketler</div>
+                        <h3 class="card-title">Fukuşima Nükleer Felaketi: Deprem ve Tsunami Sonrası Kriz</h3>
+                        <p class="card-description">11 Mart 2011'de Japonya'da meydana gelen büyük deprem ve tsunami sonrası Fukuşima Daiichi Nükleer Santrali'nde yaşanan kriz ve sonuçları.</p>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">5 Mart 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 9.1K</span>
+                                <span>💬 156</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bhopal Örneği -->
+                <div class="content-card">
+                    <img src="https://via.placeholder.com/400x320" alt="Bhopal Gaz Faciası" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-disasters">Felaketler</div>
+                        <h3 class="card-title">Bhopal Gaz Faciası: Dünyanın En Büyük Endüstriyel Felaketi</h3>
+                        <p class="card-description">1984 yılında Hindistan'ın Bhopal şehrinde Union Carbide fabrikasından sızan zehirli gazın neden olduğu ve binlerce kişinin ölümüne yol açan endüstriyel kaza.</p>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">12 Şubat 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 7.3K</span>
+                                <span>💬 112</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Three Mile Island Örneği -->
+                <div class="content-card">
+                    <img src="https://via.placeholder.com/400x320" alt="Three Mile Island Kazası" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-disasters">Felaketler</div>
+                        <h3 class="card-title">Three Mile Island: Amerika'nın En Büyük Nükleer Kazası</h3>
+                        <p class="card-description">1979 yılında Pennsylvania'da meydana gelen ve ABD tarihinin en ciddi nükleer kazası olarak bilinen Three Mile Island olayının detaylı analizi.</p>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">20 Ocak 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 6.5K</span>
+                                <span>💬 98</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Yorumlar Bölümü -->
+        <section class="comments-section">
+            <h2 class="comments-title">Yorumlar (245)</h2>
+            
+            <form class="comment-form">
+                <textarea class="comment-input" placeholder="Düşüncelerinizi paylaşın..."></textarea>
+                <button type="submit" class="comment-button">Yorum Yap</button>
+            </form>
+            
+            <div class="comment-list">
+                <!-- Örnek Yorumlar -->
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="comment-avatar"></div>
+                            <span class="comment-name">Mehmet Yılmaz</span>
+                        </div>
+                        <div class="comment-date">10 Mart 2025</div>
+                    </div>
+                    <div class="comment-text">Çernobil kazası hakkında bu kadar detaylı bir analiz okuduğum için teşekkür ederim. Özellikle kazanın uzun vadeli etkileri bölümü çok aydınlatıcıydı. Geçmişte yaşanan bu tür felaketlerden ders çıkarmak, gelecekte benzer olayların yaşanmaması için çok önemli.</div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="comment-avatar"></div>
+                            <span class="comment-name">Ayşe Kaya</span>
+                        </div>
+                        <div class="comment-date">8 Mart 2025</div>
+                    </div>
+                    <div class="comment-text">2018 yılında Pripyat'ı ziyaret etme fırsatım olmuştu. Makalede bahsettiğiniz o terk edilmiş şehir atmosferi gerçekten çok etkileyici ve bir o kadar da ürkütücü. Orada bulunmak, insanlık tarihinin bu acı dönüm noktasını daha iyi anlamama yardımcı oldu.</div>
+                </div>
+                
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-author">
+                            <div class="comment-avatar"></div>
+                            <span class="comment-name">Can Demir</span>
+                        </div>
+                        <div class="comment-date">5 Mart 2025</div>
+                    </div>
+                    <div class="comment-text">Nükleer enerji konusunda hala çok tartışma var. Bir yandan temiz enerji kaynağı olarak görülürken, diğer yandan Çernobil gibi felaketlerin potansiyel riski. Sizce günümüzde nükleer santraller yeterince güvenli mi? Yoksa alternatif enerji kaynaklarına mı yönelmeliyiz?</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">HP</div>
+                        <span class="logo-text">HikayePortalı</span>
+                    </a>
+                    <p>Hikayelerin buluşma noktası</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Sayfalar</h3>
+                        <ul>
+                            <li><a href="index.html">Anasayfa</a></li>
+                            <li><a href="discover.html">Keşfet</a></li>
+                            <li><a href="today.html">Tarihte Bugün</a></li>
+                            <li><a href="about.html">Hakkında</a></li>
+                            <li><a href="contact.html">İletişim</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Kategoriler</h3>
+                        <ul>
+                            <li><a href="#">Macera</a></li>
+                            <li><a href="#">Romantik</a></li>
+                            <li><a href="#">Bilim Kurgu</a></li>
+                            <li><a href="#">Fantastik</a></li>
+                            <li><a href="#">Korku</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Yasal</h3>
+                        <ul>
+                            <li><a href="#">Kullanım Şartları</a></li>
+                            <li><a href="#">Gizlilik Politikası</a></li>
+                            <li><a href="#">Çerez Politikası</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 HikayePortalı. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="story.js"></script>
+</body>
+</html>

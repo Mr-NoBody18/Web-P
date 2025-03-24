@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HikayePortalı - Ana Sayfa</title>
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-red: #ff4d4d;
+            --accent-orange: #ff8c00;
+            --accent-brown: #d4af37;
+            --accent-purple: #9370db;
+            --glass-bg: rgba(30, 30, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Ana Menü */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-purple));
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Kategori renklerini tanımlama */
+        .nav-links a.cars:hover {
+            color: var(--accent-red);
+        }
+
+        .nav-links a.disasters:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-links a.historic:hover {
+            color: var(--accent-brown);
+        }
+
+        .nav-links a.creepy:hover {
+            color: var(--accent-purple);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(50, 50, 50, 0.5);
+            border-radius: 20px;
+            padding: 8px 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            padding: 5px;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-icon {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .action-button {
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            color: var(--text-primary);
+        }
+
+        .user-profile {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-brown), var(--accent-purple));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .user-profile:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobil menü */
+        .mobile-menu-button {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Ana Sayfa İçeriği */
+        .hero-section {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+        }
+
+        .today-in-history {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .today-date {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .history-event {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        .history-event strong {
+            color: var(--accent-orange);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, currentColor, transparent);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .category-disasters {
+            color: var(--accent-orange);
+        }
+
+        .category-cars {
+            color: var(--accent-red);
+        }
+
+        .category-creepy {
+            color: var(--accent-purple);
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: auto;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 10px;
+        }
+
+        .info-box {
+            backdrop-filter: blur(10px);
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .info-title {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .info-item {
+            font-size: 13px;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .search-bar input {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .search-bar {
+                display: none;
+            }
+
+            .header-inner {
+                padding: 10px 0;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ana Menü -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-inner">
+                <button class="mobile-menu-button">☰</button>
+                
+                <a href="#" class="logo">
+                    <span class="logo-icon"></span>
+                    HikayePortalı
+                </a>
+                
+                <nav class="nav-links">
+                    <a href="#" class="cars">Arabalar</a>
+                    <a href="#" class="disasters">Felaketler</a>
+                    <a href="#" class="historic">Tarihi Mekanlar</a>
+                    <a href="#" class="creepy">Creepy Hikayeler</a>
+                </nav>
+                
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Ara...">
+                </div>
+                
+                <div class="user-actions">
+                    <button class="action-button">🔔</button>
+                    <button class="action-button">✏️</button>
+                    <div class="user-profile"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana Sayfa İçeriği -->
+    <main class="container">
+        <!-- Hero Bölümü -->
+        <section class="hero-section">
+            <h1 class="hero-title">Keşfedilecek Hikayeler</h1>
+            
+            <div class="today-in-history">
+                <p class="today-date">14 Mart 2025 - Bugün Tarihte</p>
+                <h2 class="history-event">1986 - <strong>Avrupa Para Birimi (ECU)</strong> Avrupa Topluluğu'nun resmi para birimi olarak onaylandı.</h2>
+            </div>
+        </section>
+
+        <!-- Öne Çıkan İçerikler -->
+        <section>
+            <h2 class="section-title">Öne Çıkanlar</h2>
+            
+            <div class="card-grid">
+                <!-- Çernobil Örneği -->
+                <div class="content-card">
+                    <img src="/api/placeholder/400/320" alt="Çernobil Nükleer Felaketi" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-disasters">Felaketler</div>
+                        <h3 class="card-title">Çernobil Nükleer Felaketi: İnsanlık Tarihinin En Büyük Nükleer Kazası</h3>
+                        <p class="card-description">26 Nisan 1986'da Ukrayna'nın Pripyat şehrinde meydana gelen ve dünya tarihinin en büyük nükleer felaketlerinden biri olan Çernobil kazasının ayrıntılı analizi.</p>
+                        
+                        <div class="info-box">
+                            <h4 class="info-title">Teknik Bilgiler</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Tarih: </span>
+                                    <span class="info-value">26 Nisan 1986</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Konum: </span>
+                                    <span class="info-value">Pripyat, Ukrayna</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Reaktör Tipi: </span>
+                                    <span class="info-value">RBMK-1000</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Radyasyon Salınımı: </span>
+                                    <span class="info-value">5.2 milyon TBq</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">15 Şubat 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 12.3K</span>
+                                <span>💬 245</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ferrari F40 Örneği -->
+                <div class="content-card">
+                    <img src="/api/placeholder/400/320" alt="Ferrari F40" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-cars">Arabalar</div>
+                        <h3 class="card-title">Ferrari F40: Efsanenin Son Şaheseri</h3>
+                        <p class="card-description">Ferrari'nin 40. yıldönümünde ürettiği ve kurucusu Enzo Ferrari'nin son onayladığı süper otomobil F40'ın hikayesi ve teknik detayları.</p>
+                        
+                        <div class="info-box">
+                            <h4 class="info-title">Teknik Özellikler</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Üretim Yılları: </span>
+                                    <span class="info-value">1987-1992</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Motor: </span>
+                                    <span class="info-value">2.9L Twin-Turbo V8</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Güç: </span>
+                                    <span class="info-value">478 HP</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">0-100 km/s: </span>
+                                    <span class="info-value">4.1 saniye</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">2 Mart 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 8.7K</span>
+                                <span>💬 178</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Creepy Hikaye Örneği -->
+                <div class="content-card">
+                    <img src="/api/placeholder/400/320" alt="Rüya Avcısı" class="card-image">
+                    <div class="card-content">
+                        <div class="card-category category-creepy">Creepy Hikayeler</div>
+                        <h3 class="card-title">Rüya Avcısı: Köyün Karanlık Sırrı</h3>
+                        <p class="card-description">Küçük bir dağ köyünde yaşayanların rüyalarında gördükleri karanlık figürün peşine düşen bir araştırmacının yaşadığı paranormal olaylar.</p>
+                        
+                        <div class="info-box">
+                            <h4 class="info-title">Hikaye Detayları</h4>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Tür: </span>
+                                    <span class="info-value">Paranormal/Korku</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Konum: </span>
+                                    <span class="info-value">Karadeniz Dağları</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Uzunluk: </span>
+                                    <span class="info-value">12 dakika</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Uyarı: </span>
+                                    <span class="info-value">Yüksek Gerilim</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-meta">
+                            <div class="card-date">8 Mart 2025</div>
+                            <div class="card-stats">
+                                <span>👁️ 15.6K</span>
+                                <span>💬 432</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Son Eklenenler -->
+        <section>
+            <h2 class="section-title">Son Eklenenler</h2>
+            
+            <div class="card-grid">
+                <!-- Diğer örnek kartlar buraya eklenebilir -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Basit JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menü için gerekli JavaScript burada olacak
+            
+            // Kartlar için hover efektleri ve diğer işlemler
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = `0 15px 30px rgba(0, 0, 0, 0.4)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = `0 10px 20px rgba(0, 0, 0, 0.3)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

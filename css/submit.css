@@ -1,0 +1,192 @@
+/* submit.css - Hikaye Gönderme Sayfası Özel Stilleri */
+
+.submit-hero-section {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.submit-intro {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.submit-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid var(--glass-border);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 2px rgba(147, 112, 219, 0.2);
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23b3b3b3' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.form-help {
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.form-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-purple);
+}
+
+.form-checkbox-label {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.image-upload-container {
+    border: 2px dashed var(--glass-border);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-upload-container:hover {
+    border-color: var(--accent-purple);
+    background: rgba(147, 112, 219, 0.05);
+}
+
+.upload-icon {
+    font-size: 40px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.upload-text {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.upload-hint {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.submit-button {
+    background: linear-gradient(45deg, var(--accent-red), var(--accent-purple));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 40px auto 0;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+}
+
+.guidelines-section {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.guidelines-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.guidelines-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 110px;
+    height: 3px;
+    border-radius: 6px;
+    background: linear-gradient(85deg, var(--accent-red), var(--accent-purple), transparent);
+}
+
+.guidelines-list {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid var(--glass-border);
+}
+
+.guidelines-list ol {
+    padding-left: 20px;
+}
+
+.guidelines-list li {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.guidelines-list li strong {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .submit-form-container {
+        padding: 20px;
+    }
+    
+    .submit-intro {
+        font-size: 16px;
+    }
+}

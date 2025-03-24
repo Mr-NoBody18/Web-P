@@ -1,72 +1,61 @@
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+
     
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+    // Kartlar için hover efektleri ve tıklama olayları
+    const cards = document.querySelectorAll('.content-card');
+    cards.forEach(card => {
+        // Hikaye paylaş kartı değilse tıklama olayı ekle
+        if (!card.classList.contains('share-story-card')) {
+            card.style.cursor = 'pointer';
+            
+            card.addEventListener('click', function() {
+                // Hikaye detay sayfasına yönlendirme
+                window.location.href = 'story.html';
+            });
+        }
+        
+        card.addEventListener('mouseenter', function() {
+            this.style.boxShadow = `0 15px 30px rgba(0, 0, 0, 0.4)`;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = `0 10px 20px rgba(0, 0, 0, 0.3)`;
+        });
+    });
+    
+    // Hikaye Paylaş butonu (kalem simgesi) için yönlendirme
+    const submitStoryButton = document.querySelector('.submit-story');
+    if (submitStoryButton) {
+        submitStoryButton.addEventListener('click', function() {
+            window.location.href = 'submit.html';
         });
     }
     
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.nav-links') && !event.target.closest('.menu-toggle')) {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        }
-    });
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-                
-                // Smooth scroll to target
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
+    // Arama çubuğu işlevselliği
+    const searchInput = document.querySelector('.search-bar input');
+    if (searchInput) {
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.1)';
         });
-    });
-    
-    // Add animation class to elements when they come into view
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.card, .category');
         
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animate');
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.style.boxShadow = 'none';
+        });
+        
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                // Arama işlevi (ileride eklenecek)
+                alert(`"${this.value}" için arama sonuçları yakında gösterilecek!`);
             }
         });
-    };
+    }
     
-    // Run animation check on load and scroll
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', animateOnScroll);
+    // Günün tarihini otomatik güncelleme
+    const todayDateElement = document.querySelector('.today-date');
+    if (todayDateElement) {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = now.toLocaleDateString('tr-TR', options);
+        todayDateElement.textContent = `${formattedDate} - Bugün Tarihte`;
+    }
 });
