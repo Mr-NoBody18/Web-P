@@ -23,6 +23,7 @@
                     <li><a href="index.html" class="nav-item home">Anasayfa</a></li>
                     <li><a href="discover.html" class="nav-item discover">Keşfet</a></li>
                     <li><a href="today.html" class="nav-item today">Tarihte Bugün</a></li>
+                    <li><a href="forum.html" class="nav-item forum">Forum</a></li>
                     <li><a href="about.html" class="nav-item about">Hakkında</a></li>
                     <li><a href="contact.html" class="nav-item contact">İletişim</a></li>
                 </ul>
@@ -31,39 +32,25 @@
             <!-- Kullanıcı İşlemleri -->
             <div class="user-actions">
                 <!-- Giriş/Kayıt Butonları -->
-                <div class="auth-buttons">
-                    <a href="login.html" class="login-button">Giriş</a>
-                    <a href="register.html" class="register-button">Kayıt</a>
+                <div class="auth-buttons" id="auth-buttons">
+                    <a href="login.html" class="login-button">Giriş Yap</a>
+                    <a href="register.html" class="register-button">Kayıt Ol</a>
                 </div>
                 
-                <!-- Profil Menüsü -->
-                <div class="user-profile-container">
-                    <button id="user-profile-button" class="user-profile" aria-label="Profil menüsünü aç/kapat">
-                        <i class="profile-icon">👤</i>
-                    </button>
-                    
-                    <!-- Profil Dropdown Menüsü -->
-                    <div id="profile-dropdown" class="profile-dropdown">
-                        <div class="dropdown-item">
-                            <span class="dropdown-icon">👤</span>
+                <!-- Kullanıcı profil menüsü (giriş yapıldığında görünür) -->
+                <div class="user-profile-container" id="user-profile-container" style="display: none;">
+                    <div class="user-profile" id="user-profile">
+                        <span id="user-initial">A</span>
+                    </div>
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="dropdown-icon">👤</i>
                             <span>Profilim</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <span class="dropdown-icon">⚙️</span>
-                            <span>Ayarlar</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <span class="dropdown-icon">📝</span>
-                            <span>Hikayelerim</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <span class="dropdown-icon">❤️</span>
-                            <span>Favorilerim</span>
-                        </div>
-                        <div class="dropdown-item">
-                            <span class="dropdown-icon">🚪</span>
-                            <span>Çıkış</span>
-                        </div>
+                        </a>
+                        <a href="#" class="dropdown-item" id="logout-button">
+                            <i class="dropdown-icon">🚪</i>
+                            <span>Çıkış Yap</span>
+                        </a>
                     </div>
                 </div>
             </div>
